@@ -11,17 +11,26 @@
     <!-- <link rel="stylesheet" href="static/css/base.css"> -->
 
     <style>
-       .navbar {
+        /* Styling for the navigation bar and links */
+        .navbar {
             background-color: rgba(255, 255, 255, 0) !important;
             transition: background-color 0.3s ease;
         }
         .navbar-scrolled {
             background-color: rgba(255, 255, 255, 1) !important;
         }
-        /* Custom class for increased font size */
         .navbar-nav .nav-item a.nav-link {
             font-size: 16px;
-            /* color: red; */
+            color: black; /* Set default color */
+            text-decoration: none; /* Remove default underline */
+            border-bottom: 1px solid black; /* Add transparent border-bottom */
+            transition: color 0.3s ease, border-bottom 0.3s ease; /* Add transitions */
+        }
+
+        /* Change font color and underline when navbar is scrolled */
+        .navbar-scrolled .navbar-nav .nav-item a.nav-link {
+            color: red;
+            border-bottom: 1px solid red; /* Add red border-bottom */
         }
     </style>
 
@@ -33,14 +42,17 @@
 
     <!-- Navigation bar with toggle button and collapsible links -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <a class="navbar-brand h1 text-center text-md-left" href="#" style="color: aliceblue; font-family: 'Lucida Console', 'Courier New', monospace; font-weight: 700; font-size: 28px; margin-top: 30px;">
+        <!-- Brand logo and name -->
+        <a class="navbar-brand h1 text-center text-md-left" href="#" style="color:rgba(255, 255, 255, 1); font-family: 'Lucida Console', 'Courier New', monospace; font-weight: 1000; font-size: 28px; margin-top: 30px;">
             Ayishah<span style="color: red; font-size: 40px;">PT</span>
         </a>
+        <!-- Toggle button for mobile navigation -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Navigation links -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto ml-auto">
+            <ul class="navbar-nav mx-4 mt-3">
                 <li class="nav-item">
                     <a class="nav-link mx-3" href="#"><i class="fa fa-home mr-1"></i>Home<span class="sr-only">(current)</span></a>
                 </li>
@@ -60,14 +72,17 @@
         </div>
     </nav>
 
+    <!-- Main content -->
     <div class="body-content">
-    <!-- Hero Section - Home Page -->
-    <section><!-- Add some top margin to create space under the navbar -->
-        <img src="static/images/background_training.jpg" class="img-fluid" alt="Training Background Image">
-    </section>
+        <!-- Hero Section - Home Page -->
+        <section class="hero-section"><!-- Add some top margin to create space under the navbar -->
+            <!-- Background image for the hero section -->
+            <img src="static/images/background_training.jpg" class="img-fluid" alt="Training Background Image">
+        </section>
 
     <!-- Footer Section -->
     <footer class="footer bg-dark text-white border-top">
+        <!-- Contact information, social media links, and newsletter subscription form -->
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -97,12 +112,16 @@
         </div>
     </footer>
 </div>
+
     <!-- Bootstrap JavaScript dependencies (jQuery, Popper.js, Bootstrap JS) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- jQuery for handling scroll events -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+        // jQuery script to change navbar style on scroll
         $(document).ready(function () {
             var scrollThreshold = 150;
 
