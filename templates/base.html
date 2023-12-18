@@ -17,7 +17,7 @@
             transition: background-color 0.3s ease;
         }
         .navbar-scrolled {
-            background-color: rgba(255, 255, 255, 1) !important;
+            background-color: #ffeecc !important;
         }
         .navbar-nav .nav-item a.nav-link {
             font-size: 16px;
@@ -29,8 +29,8 @@
 
         /* Change font color and underline when navbar is scrolled */
         .navbar-scrolled .navbar-nav .nav-item a.nav-link {
-            color: red;
-            border-bottom: 1px solid red; /* Add red border-bottom */
+            color: #cc3300;
+            border-bottom: 1px solid #cc3300; /* Add red border-bottom */
         }
     </style>
 
@@ -43,8 +43,8 @@
     <!-- Navigation bar with toggle button and collapsible links -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <!-- Brand logo and name -->
-        <a class="navbar-brand h1 text-center text-md-left" href="#" style="color:rgba(255, 255, 255, 1); font-family: 'Lucida Console', 'Courier New', monospace; font-weight: 1000; font-size: 28px; margin-top: 30px;">
-            Ayishah<span style="color: red; font-size: 40px;">PT</span>
+        <a class="navbar-brand h1 text-center text-md-left" href="#" style="color:#ffeecc; font-family: 'Lucida Console', 'Courier New', monospace; font-weight: 1000; font-size: 28px; margin-top: 30px;">
+            Ayishah<span style="color: #cc3300; font-size: 40px;">PT</span>
         </a>
         <!-- Toggle button for mobile navigation -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,6 +69,10 @@
                     <a class="nav-link mx-3" href="#"><i class="fa fa-envelope mr-1"></i>Get in Touch!</a>
                 </li>
             </ul>
+        </div>
+        <!-- Additional logo in the top right corner -->
+        <div>
+            <img src="static/images/logo_top_right.svg" alt="Second Logo" style="max-height: 300px; max-width: 300px; margin-right: 20px;">
         </div>
     </nav>
 
