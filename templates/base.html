@@ -32,6 +32,36 @@
             color: #cc3300;
             border-bottom: 1px solid #cc3300; /* Add red border-bottom */
         }
+    /* ... Your existing styles ... */
+
+    /* Styling for the fade-in effect of the About Us section */
+    .fade-section.about-us-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .fade-section.about-us-section.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Styling for the fade-in effect of the Footer section */
+    .fade-section.footer-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .fade-section.footer-section.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+        .about-us-left {
+            padding-right: 30px;
+        }
+        .about-us-right {
+            padding-left: 30px;
+        }
     </style>
 
     <!-- Title of the page (can be dynamically set using template engine) -->
@@ -66,12 +96,12 @@
                     <a class="nav-link mx-3" href="#"><i class="fa fa-picture-o mr-1"></i>Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-envelope mr-1"></i>Get in Touch!</a>
+                    <a class="nav-link mx-3" href="#"><i class="fa fa-envelope mr-1"></i>Contact</a>
                 </li>
             </ul>
         </div>
         <!-- Additional logo in the top right corner -->
-        <div>
+        <div class="d-none d-lg-block"> <!-- Show on screens larger than large (lg) -->
             <img src="static/images/logo_top_right.svg" alt="Second Logo" style="max-height: 300px; max-width: 300px; margin-right: 20px;">
         </div>
     </nav>
@@ -84,8 +114,25 @@
             <img src="static/images/background_training.jpg" class="img-fluid" alt="Training Background Image">
         </section>
 
+    <!-- About Us Section -->
+    <section class="fade-section about-us-section mt-4 mb-4">
+        <div class="row justify-content-center" style="padding: 50px;">
+            <!-- Image on the left -->
+            <div class="col-md-6 about-us-left">
+                <img src="static/images/aboutUsImage.jpg" class="img-fluid" alt="About Us Image">
+            </div>
+            <!-- Text on the right -->
+            <div class="col-md-6 about-us-right">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti. Maecenas in justo eu velit dapibus gravida. Sed blandit urna vel ex hendrerit, ac blandit lacus fermentum. Duis vitae lectus vitae elit bibendum aliquet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti.</p>
+            </div>
+        </div>
+    </section>
+    
+
     <!-- Footer Section -->
-    <footer class="footer bg-dark text-white border-top">
+    <footer class="fade-section footer-section bg-dark text-white border-top">
         <!-- Contact information, social media links, and newsletter subscription form -->
         <div class="container">
             <div class="row">
@@ -122,22 +169,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-    <!-- jQuery for handling scroll events -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        // jQuery script to change navbar style on scroll
-        $(document).ready(function () {
-            var scrollThreshold = 150;
+<!-- jQuery for handling scroll events -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // jQuery script to change navbar style on scroll
+    $(document).ready(function () {
+        var scrollThreshold = 150;
 
-            $(window).scroll(function () {
-                var scroll = $(window).scrollTop();
-                if (scroll >= scrollThreshold) {
-                    $(".navbar").addClass("navbar-scrolled");
-                } else {
-                    $(".navbar").removeClass("navbar-scrolled");
-                }
-            });
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= scrollThreshold) {
+                $(".navbar").addClass("navbar-scrolled");
+            } else {
+                $(".navbar").removeClass("navbar-scrolled");
+            }
         });
-    </script>
+    });
+
+    // Function to handle fade in/out effect on scroll for About Us section
+    function fadeInOutAboutUsOnScroll() {
+        var aboutUsSection = $(".about-us-section");
+
+        try {
+            // Check if the top of the About Us section is in the viewport (with a 75px offset)
+            if (aboutUsSection.length) {
+                if (isTopOfElementInViewport(aboutUsSection[0], 75)) {
+                    aboutUsSection.addClass("fade-in").removeClass("fade-out");
+                } else {
+                    aboutUsSection.removeClass("fade-in").addClass("fade-out");
+                }
+            } else {
+                throw new Error("About Us section not found.");
+            }
+        } catch (error) {
+            console.error("Error in fade effect for About Us section:", error.message);
+        }
+    }
+
+    // Function to handle fade in/out effect on scroll for Footer section
+    function fadeInOutFooterOnScroll() {
+        var footerSection = $(".footer-section");
+
+        try {
+            // Check if the top of the Footer section is in the viewport (with a 75px offset)
+            if (footerSection.length) {
+                if (isTopOfElementInViewport(footerSection[0], 75)) {
+                    footerSection.addClass("fade-in").removeClass("fade-out");
+                } else {
+                    footerSection.removeClass("fade-in").addClass("fade-out");
+                }
+            } else {
+                throw new Error("Footer section not found.");
+            }
+        } catch (error) {
+            console.error("Error in fade effect for Footer section:", error.message);
+        }
+    }
+
+    // Attach the scroll event listeners
+    $(window).on("scroll", function () {
+        fadeInOutAboutUsOnScroll();
+        fadeInOutFooterOnScroll();
+    });
+
+    // Function to check if the top of an element is in the viewport with an offset
+    function isTopOfElementInViewport(el, offset) {
+        var rect = el.getBoundingClientRect();
+        return rect.top <= window.innerHeight - offset;
+    }
+</script>
+
+
+
+
 </body>
 </html>
