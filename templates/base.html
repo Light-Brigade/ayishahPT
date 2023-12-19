@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Title of the page (can be dynamically set using template engine) -->
+    <title>{% block title %}Ayishah PT - Your Fitness Partner{% endblock %}</title>
+
     <!-- Meta tags for character set and responsive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -8,22 +12,45 @@
     <!-- Bootstrap CSS and Font Awesome CSS links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous"/>
-    <!-- <link rel="stylesheet" href="static/css/base.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
+
+
+    <!-- <link rel="stylesheet" href="static/css/base.css"> -->
+    
     <style>
         /* Styling for the navigation bar and links */
         .navbar {
             background-color: rgba(255, 255, 255, 0) !important;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-bottom 0.3s ease; /* Add transition for border-bottom */
+            border-bottom: none; /* Initial border-bottom style */
         }
+
+        /* Add border-bottom to the navbar when scrolled */
         .navbar-scrolled {
             background-color: #ffeecc !important;
+            border-bottom: 5px solid black; /* Add black border-bottom */
         }
+
+        /* Styling for the brand logo */
+        .navbar-brand {
+            color: #ffeecc !important;
+            font-family: 'Lucida Console', 'Courier New', monospace;
+            font-weight: 1000;
+            font-size: 30px;
+            margin-top: 30px;
+        }
+
+        /* Adjust margin-top for the brand logo when scrolled */
+        .navbar-scrolled .navbar-brand {
+            margin-top: 10px !important;
+        }
+
+        /* Styling for the navigation links */
         .navbar-nav .nav-item a.nav-link {
-            font-size: 16px;
+            font-size: 19px;
             color: black; /* Set default color */
-            text-decoration: none; /* Remove default underline */
-            border-bottom: 1px solid black; /* Add transparent border-bottom */
+            border-bottom: 1px solid black; /* Add black border-bottom */
             transition: color 0.3s ease, border-bottom 0.3s ease; /* Add transitions */
         }
 
@@ -32,49 +59,68 @@
             color: #cc3300;
             border-bottom: 1px solid #cc3300; /* Add red border-bottom */
         }
-    /* ... Your existing styles ... */
 
-    /* Styling for the fade-in effect of the About Us section */
-    .fade-section.about-us-section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .fade-section.about-us-section.fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Styling for the fade-in effect of the Footer section */
-    .fade-section.footer-section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .fade-section.footer-section.fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-        .about-us-left {
-            padding-right: 30px;
+        /* Adjust margin-left for navbar links when scrolled */
+        .navbar-scrolled .navbar-nav {
+            margin-left: 9px !important;
         }
-        .about-us-right {
-            padding-left: 30px;
+
+        .navbar-nav .nav-item a.nav-link {
+            font-size: 19px;
+            color: black; /* Set default color */
+            border-bottom: 1px solid black; /* Add black border-bottom */
+            transition: color 0.3s ease, border-bottom 0.3s ease; /* Add transitions */
+        }
+        /* Change font color and underline when navbar is scrolled */
+        .navbar-scrolled .navbar-nav .nav-item a.nav-link {
+            color: #cc3300;
+            border-bottom: 1px solid #cc3300; /* Add red border-bottom */
+        }
+        .navbar-scrolled .PtLetters {
+            font-size: 50px !important;
+        }
+        /* Styling for the fade-in effect of the About Us section */
+        .fade-section.about-us-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .fade-section.about-us-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Styling for the fade-in effect of the Footer section */
+        .fade-section.footer-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .fade-section.footer-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Styling for the fade-in effect of the Client Reviews section */
+        .fade-section.client-reviews-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .fade-section.client-reviews-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .row.about-us-content {
+            margin: 0px;
         }
     </style>
-
-    <!-- Title of the page (can be dynamically set using template engine) -->
-    <title>{% block title %}Ayishah PT - Your Fitness Partner{% endblock %}</title>
 </head>
 
 <body>
-
     <!-- Navigation bar with toggle button and collapsible links -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <!-- Brand logo and name -->
-        <a class="navbar-brand h1 text-center text-md-left" href="#" style="color:#ffeecc; font-family: 'Lucida Console', 'Courier New', monospace; font-weight: 1000; font-size: 28px; margin-top: 30px;">
-            Ayishah<span style="color: #cc3300; font-size: 40px;">PT</span>
+        <a class="navbar-brand h1 text-center text-md-left" href="#" >
+            Ayishah<span class="PtLetters" style="color: #cc3300; font-size: 40px;">PT</span>
         </a>
         <!-- Toggle button for mobile navigation -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,21 +128,26 @@
         </button>
         <!-- Navigation links -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-4 mt-3">
+            <ul class="navbar-nav mt-3">
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-home mr-1"></i>Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#"><i class="fa fa-home mr-1"></i>Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-child mr-1"></i>About</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#client-reviews">
+                        <i class="fa fa-star mr-1"></i>Client Reviews
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-laptop mr-1"></i>Services</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#about-us"><i class="fa fa-child mr-1"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-picture-o mr-1"></i>Portfolio</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#"><i class="fa fa-laptop mr-1"></i>Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3" href="#"><i class="fa fa-envelope mr-1"></i>Contact</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#"><i class="fa fa-picture-o mr-1"></i>Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3 font-weight-bold" href="#"><i class="fa fa-envelope mr-1"></i>Contact</a>
                 </li>
             </ul>
         </div>
@@ -109,138 +160,320 @@
     <!-- Main content -->
     <div class="body-content">
         <!-- Hero Section - Home Page -->
-        <section class="hero-section"><!-- Add some top margin to create space under the navbar -->
+        <section class="hero-section">
             <!-- Background image for the hero section -->
             <img src="static/images/background_training.jpg" class="img-fluid" alt="Training Background Image">
         </section>
 
-    <!-- About Us Section -->
-    <section class="fade-section about-us-section mt-4 mb-4">
-        <div class="row justify-content-center" style="padding: 50px;">
-            <!-- Image on the left -->
-            <div class="col-md-6 about-us-left">
-                <img src="static/images/aboutUsImage.jpg" class="img-fluid" alt="About Us Image">
-            </div>
-            <!-- Text on the right -->
-            <div class="col-md-6 about-us-right">
-                <h2>About Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti. Maecenas in justo eu velit dapibus gravida. Sed blandit urna vel ex hendrerit, ac blandit lacus fermentum. Duis vitae lectus vitae elit bibendum aliquet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti.</p>
-            </div>
-        </div>
-    </section>
-    
-
-    <!-- Footer Section -->
-    <footer class="fade-section footer-section bg-dark text-white border-top">
-        <!-- Contact information, social media links, and newsletter subscription form -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>Email: info@yourwebsite.com</p>
-                    <p>Phone: (123) 456-7890</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white"><i class="fa fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#" class="text-white"><i class="fa fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#" class="text-white"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates and promotions.</p>
-                    <form>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Enter your email">
+        <!-- Client Reviews Section -->
+        <section id="client-reviews" class="fade-section client-reviews-section mt-4 mb-4">
+            <div class="container-fluid reviews">
+                <!-- Section Heading -->
+                <h2 class="display-4 text-primary mb-4 text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+                    Client Reviews <i class="fa fa-star mr-1" style="color: gold;"></i>
+                </h2>
+                <!-- Client Reviews Grid -->
+                <div class="row">
+                    <!-- Review Box 1 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>Anne, 39:</em></h5>
+                            <p class="card-text">
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi."
+                            </p>
                         </div>
-                        <button type="submit" class="btn btn-outline-light">Subscribe</button>
-                    </form>
+                    </div>
+                </div>
+                <!-- Review Box 2 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>John, 45:</em></h5>
+                            <p class="card-text">
+                                "Suspendisse potenti. Maecenas in justo eu velit dapibus gravida."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review Box 3 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>Lisa, 32:</em></h5>
+                            <p class="card-text">
+                                "Sed blandit urna vel ex hendrerit, ac blandit lacus fermentum."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review Box 4 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>Michael, 28:</em></h5>
+                            <p class="card-text">
+                                "Duis vitae lectus vitae elit bibendum aliquet."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Box 5 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>Sarah, 35:</em></h5>
+                            <p class="card-text">
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Box 6 -->
+                <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><em>Chris, 42:</em></h5>
+                            <p class="card-text">
+                                "Suspendisse potenti. Maecenas in justo eu velit dapibus gravida."
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-</div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="fade-section about-us-section mt-4 mb-4">
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <!-- Image on the left -->
+                    <div class="col-md-6 md-4">
+                        <img src="static/images/aboutUsImage.jpg" class="img-fluid rounded mx-auto d-block about-us-left" alt="About Us Image" >
+                    </div>
+                    <!-- Text on the right -->
+                    <div class="col-md-6 about-us-right">
+                        <h2 class="display-4 text-primary mb-4" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">About Us <i class="fa fa-child mr-1"></i></h2>
+                        <p class="lead">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti.
+                            Maecenas in justo eu velit dapibus gravida. Sed blandit urna vel ex hendrerit, ac blandit lacus fermentum.
+                            Duis vitae lectus vitae elit bibendum aliquet.
+                        </p>
+                        <p class="lead">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="fade-section services-section mt-4 mb-4">
+            <div class="container-fluid">
+                <!-- Section Heading -->
+                <h2 class="display-4 text-primary mb-4 text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+                    Our Services <i class="fa fa-laptop mr-1"></i>
+                </h2>
+                <!-- Service Details -->
+                <div class="row">
+                    <!-- Service 1 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Service 1</h5>
+                                <p class="card-text">Description of service 1.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Service 2</h5>
+                                <p class="card-text">Description of service 2.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Service 3</h5>
+                                <p class="card-text">Description of service 3.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more services as needed -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Open Modal
+        </button> -->
+
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This is a simple modal content. You can add any HTML content here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- Footer Section -->
+        <footer class="fade-section footer-section bg-dark text-white border-top">
+            <!-- Contact information, social media links, and newsletter subscription form -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p>Email: info@yourwebsite.com</p>
+                        <p>Phone: (123) 456-7890</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Follow Us</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white"><i class="fa fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#" class="text-white"><i class="fa fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#" class="text-white"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Newsletter</h5>
+                        <p>Subscribe to our newsletter for updates and promotions.</p>
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                            <button type="submit" class="btn btn-outline-light">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- Bootstrap JavaScript dependencies (jQuery, Popper.js, Bootstrap JS) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-<!-- jQuery for handling scroll events -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    // jQuery script to change navbar style on scroll
-    $(document).ready(function () {
-        var scrollThreshold = 150;
+    <!-- jQuery for handling scroll events -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // jQuery script to change navbar style on scroll
+        $(document).ready(function () {
+            var scrollThreshold = 150;
 
-        $(window).scroll(function () {
-            var scroll = $(window).scrollTop();
-            if (scroll >= scrollThreshold) {
-                $(".navbar").addClass("navbar-scrolled");
-            } else {
-                $(".navbar").removeClass("navbar-scrolled");
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= scrollThreshold) {
+                    $(".navbar").addClass("navbar-scrolled");
+                } else {
+                    $(".navbar").removeClass("navbar-scrolled");
+                }
+            });
+        });
+
+        // Function to handle fade in/out effect on scroll for About Us section
+        function fadeInOutAboutUsOnScroll() {
+            var aboutUsSection = $(".about-us-section");
+
+            try {
+                // Check if the top of the About Us section is in the viewport (with a 75px offset)
+                if (aboutUsSection.length) {
+                    if (isTopOfElementInViewport(aboutUsSection[0], 75)) {
+                        aboutUsSection.addClass("fade-in").removeClass("fade-out");
+                    } else {
+                        aboutUsSection.removeClass("fade-in").addClass("fade-out");
+                    }
+                } else {
+                    throw new Error("About Us section not found.");
+                }
+            } catch (error) {
+                console.error("Error in fade effect for About Us section:", error.message);
+            }
+        }
+
+        // Function to handle fade in/out effect on scroll for Footer section
+        function fadeInOutFooterOnScroll() {
+            var footerSection = $(".footer-section");
+
+            try {
+                // Check if the top of the Footer section is in the viewport (with a 75px offset)
+                if (footerSection.length) {
+                    if (isTopOfElementInViewport(footerSection[0], 75)) {
+                        footerSection.addClass("fade-in").removeClass("fade-out");
+                    } else {
+                        footerSection.removeClass("fade-in").addClass("fade-out");
+                    }
+                } else {
+                    throw new Error("Footer section not found.");
+                }
+            } catch (error) {
+                console.error("Error in fade effect for Footer section:", error.message);
+            }
+        }
+        // Function to handle fade in/out effect on scroll for Client Reviews section
+        function fadeInOutClientReviewsOnScroll() {
+            var clientReviewsSection = $(".client-reviews-section");
+
+            try {
+                // Check if the top of the Client Reviews section is in the viewport (with a 75px offset)
+                if (clientReviewsSection.length) {
+                    if (isTopOfElementInViewport(clientReviewsSection[0], 100)) {
+                        clientReviewsSection.addClass("fade-in").removeClass("fade-out");
+                    } else {
+                        clientReviewsSection.removeClass("fade-in").addClass("fade-out");
+                    }
+                } else {
+                    throw new Error("Client Reviews section not found.");
+                }
+            } catch (error) {
+                console.error("Error in fade effect for Client Reviews section:", error.message);
+            }
+        }
+
+        // Attach the scroll event listeners
+        $(window).on("scroll", function () {
+            fadeInOutClientReviewsOnScroll();
+            fadeInOutAboutUsOnScroll();
+            fadeInOutFooterOnScroll();
+        });
+
+        // Function to check if the top of an element is in the viewport with an offset
+        function isTopOfElementInViewport(el, offset) {
+            var rect = el.getBoundingClientRect();
+            return rect.top <= window.innerHeight - offset;
+        }
+        // Function to handle smooth scrolling for anchor links
+        $(document).on('click', 'a[href^="#"]', function (event) {
+            event.preventDefault();
+
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 157 // Adjusted offset to account for the fixed navbar
+                }, 1000);
             }
         });
-    });
-
-    // Function to handle fade in/out effect on scroll for About Us section
-    function fadeInOutAboutUsOnScroll() {
-        var aboutUsSection = $(".about-us-section");
-
-        try {
-            // Check if the top of the About Us section is in the viewport (with a 75px offset)
-            if (aboutUsSection.length) {
-                if (isTopOfElementInViewport(aboutUsSection[0], 75)) {
-                    aboutUsSection.addClass("fade-in").removeClass("fade-out");
-                } else {
-                    aboutUsSection.removeClass("fade-in").addClass("fade-out");
-                }
-            } else {
-                throw new Error("About Us section not found.");
-            }
-        } catch (error) {
-            console.error("Error in fade effect for About Us section:", error.message);
-        }
-    }
-
-    // Function to handle fade in/out effect on scroll for Footer section
-    function fadeInOutFooterOnScroll() {
-        var footerSection = $(".footer-section");
-
-        try {
-            // Check if the top of the Footer section is in the viewport (with a 75px offset)
-            if (footerSection.length) {
-                if (isTopOfElementInViewport(footerSection[0], 75)) {
-                    footerSection.addClass("fade-in").removeClass("fade-out");
-                } else {
-                    footerSection.removeClass("fade-in").addClass("fade-out");
-                }
-            } else {
-                throw new Error("Footer section not found.");
-            }
-        } catch (error) {
-            console.error("Error in fade effect for Footer section:", error.message);
-        }
-    }
-
-    // Attach the scroll event listeners
-    $(window).on("scroll", function () {
-        fadeInOutAboutUsOnScroll();
-        fadeInOutFooterOnScroll();
-    });
-
-    // Function to check if the top of an element is in the viewport with an offset
-    function isTopOfElementInViewport(el, offset) {
-        var rect = el.getBoundingClientRect();
-        return rect.top <= window.innerHeight - offset;
-    }
-</script>
-
-
-
-
+    </script>
 </body>
 </html>
