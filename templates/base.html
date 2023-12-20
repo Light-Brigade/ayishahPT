@@ -24,17 +24,191 @@
     <!-- <link rel="stylesheet" href="static/css/base.css"> -->
     
     <style>
+        /* Styles for the about-us-left section */
+        .about-us-left {
+            border-radius: 30px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Adjust the values as needed */
+        }
+
+        body::-webkit-scrollbar {
+            width: 0.5em; /* Adjust the width as needed */
+        }
+
+        body::-webkit-scrollbar-track {
+            background: transparent; /* or any color you prefer */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: transparent; /* or any color you prefer */
+            outline: none;
+        }
+
+        .cta {
+            position: relative;
+            margin: auto;
+            padding: 12px 18px;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+        }
+
+        .cta:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            border-radius: 50px;
+            background: #b1dae7;
+            width: 45px;
+            height: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .cta span {
+            position: relative;
+            font-family: "Ubuntu", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #234567;
+        }
+
+        .cta svg {
+            position: relative;
+            top: 0;
+            margin-left: 10px;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: #234567;
+            stroke-width: 2;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .cta:hover:before {
+            width: 100%;
+            background: #b1dae7;
+        }
+
+        .cta:hover svg {
+            transform: translateX(0);
+        }
+
+        .cta:active {
+            transform: scale(0.95);
+        }
+
+        /* Styles for generic cards */
+        .card {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Adjust the values as needed */
+        }
+
+        /* Styles for the contact section */
+        .contact-section {
+            position: relative;
+            overflow: hidden;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        /* Background styling for the contact section */
+        .contact-section:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%; /* Adjust this value to control the height of the background section */
+            background-image: url('static/images/wavesBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* Styles for the heading in the contact section */
+        .contact-section-heading {
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+
+        /* Styles for custom lists */
+        .custom-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .custom-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Styles for sections with fade-in effect */
+        .fade-section.services-section,
+        .fade-section.about-us-section,
+        .fade-section.contact-section,
+        .fade-section.portfolio-section,
+        .fade-section.footer-section,
+        .fade-section.client-reviews-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Styles for faded-in sections */
+        .fade-section.services-section.fade-in,
+        .fade-section.about-us-section.fade-in,
+        .fade-section.contact-section.fade-in,
+        .fade-section.portfolio-section.fade-in,
+        .fade-section.footer-section.fade-in,
+        .fade-section.client-reviews-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer Section Heading Style */
+        .footer-section h3 {
+            font-weight: 700 !important;
+        }
+
+        .footer-section ul.custom-list li a {
+            text-decoration: underline;
+        }
+
+        /* Style to place inputs underneath labels */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border: none;
+            border-radius: 0;
+            border-bottom: 2px solid #b366ff;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            transition: 0.2s ease all;
+        }
+
+        .form-control:focus + label,
+        .form-control:not(:placeholder-shown) + label {
+            font-size: 0.75em;
+            transform: translateY(-120%);
+            color: #007bff; 
+        }
+
         /* Styling for the navigation bar and links */
         .navbar {
             background-color: rgba(255, 255, 255, 0) !important;
             transition: background-color 0.3s ease, border-bottom 0.3s ease; /* Add transition for border-bottom */
             border-bottom: none; /* Initial border-bottom style */
-        }
-
-        /* Add border-bottom to the navbar when scrolled */
-        .navbar-scrolled {
-            background-color: #ffeecc !important;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow values for more prominence under navbar */
         }
 
         /* Styling for the brand logo */
@@ -46,38 +220,30 @@
             margin-top: 30px;
         }
 
-        /* Add a thick black border around the portfolio slider */
-        #portfolio-slider {
-            border: 5px solid black;
-            border-radius: 10px; /* Optional: Add border-radius for rounded corners */
-            padding: 0px;
-            background-color: black;
+        /* Add border-bottom to the navbar when scrolled */
+        .navbar-scrolled {
+            background-color: #ffeecc !important;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow values for more prominence under navbar */
         }
 
         /* Adjust margin-top for the brand logo when scrolled */
         .navbar-scrolled .navbar-brand {
             color: black !important;
-            font-size: 30px !important; 
+            font-size: 30px !important;
         }
 
         /* Styling for the navigation links */
         .navbar-nav .nav-item a.nav-link {
             font-size: 20px;
-            color: white; /* Set default color */
-            border-bottom: 1px solid white; /* Add black border-bottom */
+            color: #ffeecc; /* Set default color */
+            border-bottom: 1px solid #ffeecc; /* Add border-bottom */
             transition: color 0.3s ease, border-bottom 0.3s ease; /* Add transitions */
-        }
-
-        /* Change font color and background color for the active link in open navbar */
-        .navbar-scrolled .navbar-nav .nav-item.active a.nav-link {
-            color: green !important; /* Change to the desired active color */
-            border-bottom: 1px solid green !important; /* Change to the desired active border color */
         }
 
         /* Change font color and background color for the active link in closed navbar*/
         .navbar-nav .nav-item.active a.nav-link {
-            color: black !important; /* Change to the desired active color */
-            border-bottom: 1px solid black !important; /* Change to the desired active border color */
+            color: black !important;
+            border-bottom: 1px solid black !important;
         }
 
         /* Change font color and underline when navbar is scrolled */
@@ -86,66 +252,42 @@
             border-bottom: 1px solid #cc3300; /* Add red border-bottom */
         }
 
-        /* Styling for the fade-in effect of the About Us section */
-        .fade-section.about-us-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        /* Change font color and background color for the active link in open navbar */
+        .navbar-scrolled .navbar-nav .nav-item.active a.nav-link {
+            color: green !important;
+            border-bottom: 1px solid green !important;
         }
 
-        .fade-section.about-us-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        /* Hover effect for navigation links */
+        .navbar-scrolled .navbar-nav .nav-item a.nav-link:hover {
+            color: blue/* your hover color */;
+            border-bottom-color: blue/* your hover border color */;
         }
 
-        /* Styling for the fade-in effect of the Servies section */
-        .fade-section.services-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        /* Hover effect for navigation links */
+        .navbar-nav .nav-item a.nav-link:hover {
+            color: #cc3300;
+            border-bottom-color: #cc3300;
+}
+
+        /* Navbar Toggler Styles */
+        .navbar-toggler {
+            background-color: #ffeecc;
         }
 
-        .fade-section.services-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        .navbar-toggler-icon {
+            color: black; /* Text (icon) color */
         }
 
-        /* Styling for the fade-in effect of the Servies section */
-        .fade-section.portfolio-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        /* Styles for the portfolio slider */
+        #portfolio-slider {
+            border: 5px solid black;
+            border-radius: 10px;
+            padding: 0px;
+            background-color: black;
         }
 
-        .fade-section.portfolio-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Styling for the fade-in effect of the Footer section */
-        .fade-section.footer-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .fade-section.footer-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Styling for the fade-in effect of the Client Reviews section */
-        .fade-section.client-reviews-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .fade-section.client-reviews-section.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* About Us Content Row Margin */
         .row.about-us-content {
             margin: 0px;
         }
@@ -153,33 +295,92 @@
         /* Custom styles for Slick slider arrows */
         .slick-prev,
         .slick-next {
-            font-size: 30px !important; /* Adjust the font size as needed */
+            font-size: 30px !important;
             font-weight: 800;
-            color: #4c4a4a !important; /* Grey color */
-            background-color: transparent !important; /* No background */
-            border: none !important; /* No border */
-            cursor: pointer !important; /* Cursor style */
+            color: #4c4a4a !important; 
+            background-color: transparent !important; 
+            border: none !important; 
+            cursor: pointer !important; 
         }
 
         .slick-prev:hover,
         .slick-next:hover {
-            color: #000000 !important; /* Change color on hover if needed */
-        }
-        /* Add spacing between slick slider images */
-        .slick-slide {
-            margin-right: 15px; /* Adjust the spacing as needed */
-            border: 5px solid black; /* Add a 2px solid black border */
-            border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+            color: #000000 !important;
         }
 
-        /* Add styles for text-primary headings */
+        .slick-list {
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6); /* Significantly increased shadow values for more prominence */
+        }
+
+        /* Add spacing between slick slider images */
+        .slick-slide {
+            margin-right: 15px; 
+            border: 5px solid black; 
+            border-radius: 8px; 
+        }
+
+        /* Social Icons Margin and Font Size */
+        .social-icons a {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+
+        .social-icons .fa-facebook {
+            color: blue;
+        }
+
+        /* Instagram Icon Color */
+        .social-icons .fa-instagram {
+            color: purple;
+        }
+
+        .social-widgets {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Text Primary Heading Color */
         .text-primary {
             color: #b366ff !important;
+        }
+
+        .widget {
+            margin-bottom: 30px;
+            margin-left: 30px;
+        }
+
+        .widget i {
+            font-size: 30px;
+            transition: transform 0.3s ease; /* Add smooth transition for the transform property */
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px; /* Adjust the padding as needed */
+        }
+
+        .widget i:hover {
+            transform: scale(1.5); /* Increase the size on hover */
+        }
+
+        /* Facebook Icon Color */
+        .widget .fa-facebook {
+            color: blue;
+        }
+
+        /* Instagram Icon Color */
+        .widget .fa-instagram {
+            color: purple;
         }
     </style>
 </head>
 
 <body>
+
     <!-- Navigation bar with toggle button and collapsible links -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <!-- Brand logo and name -->
@@ -191,7 +392,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Navigation links -->
-        <div class="collapse navbar-collapse ml-5" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav mt-3">
                 <li class="nav-item">
                     <a class="nav-link mx-3 font-weight-bold" href="#home"><i class="fa fa-home mr-1"></i>Home<span class="sr-only">(current)</span></a>
@@ -205,13 +406,13 @@
                     <a class="nav-link mx-3 font-weight-bold" href="#about-us"><i class="fa fa-child mr-1"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3 font-weight-bold" href="#services-section"><i class="fa fa-laptop mr-1"></i>Services</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#services"><i class="fa fa-laptop mr-1"></i>Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-3 font-weight-bold" href="#portfolio"><i class="fa fa-picture-o mr-1"></i>Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-3 font-weight-bold" href="#"><i class="fa fa-envelope mr-1"></i>Contact</a>
+                    <a class="nav-link mx-3 font-weight-bold" href="#contact"><i class="fa fa-envelope mr-1"></i>Contact</a>
                 </li>
             </ul>
         </div>
@@ -221,23 +422,36 @@
         </div>
     </nav>
 
+    <!-- Facebook and Instagram widgets -->
+    <div class="social-widgets">
+        <div class="widget" id="facebook-widget">
+            <a href="#" class="text-dark"><i class="fab fa-facebook"></i></a>
+        </div>
+        <div class="widget" id="instagram-widget">
+            <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
     <!-- Main content -->
     <div class="body-content">
+
         <!-- Hero Section - Home Page -->
         <section class="hero-section" id="home">
             <!-- Background image for the hero section -->
-            <img src="static/images/background_training.jpg" class="img-fluid" alt="Training Background Image">
+            <img src="static/images/background_training.jpg" class="img-fluid mb-5" alt="Training Background Image">
         </section>
+
 
         <!-- Client Reviews Section -->
         <section id="client-reviews" class="fade-section client-reviews-section mt-4 mb-4">
             <div class="container-fluid reviews">
                 <!-- Section Heading -->
-                <h2 class="display-4 text-primary mb-4 text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+                <h2 class="display-4 text-primary mt-4 mb-4 text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
                     Client Reviews <i class="fa fa-star mr-1" style="color: gold;"></i>
                 </h2>
+                <h3 class="text-center mb-4 mt-4 font-weight-bold">Hear What Others Have To Say!</h3>
                 <!-- Client Reviews Grid -->
-                <div class="row">
+                <div class="row mt-5 mb-5">
                     <!-- Review Box 1 -->
                     <div class="col-lg-2 col-md-6 col-sm-12 mb-4">
                         <div class="card h-100">
@@ -304,19 +518,18 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Add more reviews as needed -->
                 </div>
             </div>
         </section>
 
 
         <!-- About Us Section -->
-        <section id="about-us" class="fade-section about-us-section mt-4 mb-4">
+        <section id="about-us" class="fade-section about-us-section mt-5 mb-5">
             <div class="container-fluid">
                 <div class="row justify-content-center align-items-center">
                     <!-- Image on the left -->
                     <div class="col-md-6 md-4">
-                        <img src="static/images/aboutUsImage.jpg" class="img-fluid rounded-5 mx-auto d-block about-us-left" alt="About Us Image" >
+                        <img src="static/images/aboutUsImage.jpg" class="img-fluid mx-auto d-block about-us-left" alt="About Us Image" >
                     </div>
                     <!-- Text on the right -->
                     <div class="col-md-6 about-us-right">
@@ -334,17 +547,29 @@
             </div>
         </section>
 
+
         <!-- Services Section -->
-        <section id="services-section" class="fade-section services-section mt-4 mb-4">
+        <section id="services" class="fade-section services-section mt-5 mb-4">
             <div class="container-fluid">
+                
                 <!-- Section Heading -->
                 <h2 class="display-4 text-primary mb-4 text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
                     Our Services <i class="fa fa-laptop mr-1"></i>
                 </h2>
+
+                <!-- Card Text Box -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac nisi euismod, viverra ex vel, fermentum lectus. Sed lacinia augue vel mi feugiat, ac ultrices purus tincidunt. Quisque euismod turpis non sem accumsan, eget interdum libero pulvinar. Proin hendrerit, libero vitae varius convallis, lectus turpis congue eros, vel consectetur lacus sem vel dui. Fusce ut nisi eu urna dignissim dapibus ut in ligula. Aliquam aliquet lacus in purus gravida, a convallis odio pellentesque. Nullam a bibendum turpis. Suspendisse potenti. In hac habitasse platea dictumst. Integer varius augue eget felis efficitur, vitae rhoncus dolor auctor.
+                        </p>
+                    </div>
+                </div> 
+
                 <!-- Service Details -->
                 <div class="row">
                     <!-- Service 1 -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-5">
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary">Personalized Fitness Plans</h5>
@@ -355,8 +580,9 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Service 2 -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-5">
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary">High-Intensity Interval Training (HIIT)</h5>
@@ -367,8 +593,9 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Service 3 -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mb-5">
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary">Specialized Weightlifting Programs</h5>
@@ -379,24 +606,22 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Add more services as needed -->
                 </div>
             </div>
         </section>
 
 
-
-
-        <!-- Update the Portfolio Section with Slick slider -->
-        <section id="portfolio" class="fade-section portfolio-section mt-4 mb-4">
+        <!-- Portfolio Section with Slick slider -->
+        <section id="portfolio" class="fade-section portfolio-section mt-5 mb-5">
             <div id="portfolio-container" class="container-fluid">
+
                 <!-- Section Heading -->
                 <h2 class="display-4 text-primary text-center" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">
                     Portfolio <i class="fa fa-picture-o mr-1"></i>
                 </h2>
 
                 <!-- Portfolio Slider -->
-                <div id="portfolio-slider" class="slick-slider container" style="margin-top: 10px; margin-bottom: 10px;">
+                <div id="portfolio-slider" class="slick-slider container mt-5 mb-5">
                     <!-- Image 1 -->
                     <div class="slick-slide">
                         <img src="static/images/carousel_image_1.jpg" class="img-fluid" alt="Portfolio Image 1">
@@ -425,95 +650,134 @@
             </div>
         </section>
 
-        <footer class="fade-section footer-section bg-light text-dark border-top">
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-section contact-section mt-5 mb-5">
             <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <img src="static/images/logo_top_right.svg" alt="Your Logo" height="30">
-                  <h5 class="mt-3">AyishahPT</h5>
-                  <ul class="list-unstyled">
-                    <li>Address: Your Address</li>
-                    <li>Country: Your Country</li>
-                    <li>Email: your@email.com</li>
-                    <li>Mobile: +1234567890</li>
-                  </ul>
+                <div class="row">
+                    <div class="col-md-12 text-center mb-3">
+                        <h2 class="section-heading">
+                            <span class="contact-section-heading">Get in Touch!</span>
+                        </h2>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                  <h5 class="mb-3">Menu</h5>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
-                  </ul>
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <!-- Contact Form Card -->
+                        <div class="card pt-3 pb-3 pl-5 pr-5">
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName">First Name:</label>
+                                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName">Last Name:</label>
+                                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" class="form-control" id="email" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="subject">Subject:</label>
+                                                <input type="text" class="form-control" id="subject" name="subject">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Leave us a message:</label>
+                                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                    </div>
+                                </form>
+                                <div class="container-fluid d-flex justify-content-center">
+                                    <button class="cta">
+                                        <span>Submit</span>
+                                        <svg viewBox="0 0 13 10" height="10px" width="15px">
+                                          <path d="M1,5 L11,5"></path>
+                                          <polyline points="8 1 12 5 8 9"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </footer>
+        </section>
 
         <!-- Footer Section -->
-        <footer class="fade-section footer-section bg-dark text-white border-top">
-            <!-- Contact information, social media links, and newsletter subscription form -->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Contact Us</h5>
-                        <p>Email: info@yourwebsite.com</p>
-                        <p>Phone: (123) 456-7890</p>
+        <section id="footer" class="fade-section footer-section">
+            <footer class="container-fluid bg-light text-dark border-top ">
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-3 d-flex justify-content-end">
+                        <img class="mt-0" src="static/images/logo_top_right.svg" alt="Your Logo" height="116">
                     </div>
-                    <div class="col-md-4">
-                        <h5>Follow Us</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white"><i class="fa fa-facebook"></i> Facebook</a></li>
-                            <li><a href="#" class="text-white"><i class="fa fa-twitter"></i> Twitter</a></li>
-                            <li><a href="#" class="text-white"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                    <div class="col-md-6">
+                        <h3 class="mt-3">AyishahPT</h3>
+                        <ul class="custom-list">
+                            <li>Sevenoaks Enterprise Centre, Unit 3, Bat and Ball Rd, TN14 5LJ,</li>
+                            <li>United Kingdom</li>
+                            <li style="text-decoration: underline;text-decoration-thickness: 2px;">ayishahchaudry@outlook.com</li>
+                            <li>(+44) 7123 456 789</li>
+                            <!-- Facebook and Instagram icons -->
+                            <li class="social-icons">
+                                <a href="#" class="text-dark"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="text-dark ml-3"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                        <!-- Email subscription section -->
+                        <div class="mt-3 border-top border-primary" style="border-top: 3px;">
+                            <h5>Subscribe to our newsletter</h5>
+                            <form>
+                                <div class="form-row align-items-center">
+                                    <div class="col-md-5">
+                                        <label class="sr-only" for="subscribeEmail">Email</label>
+                                        <input type="email" class="form-control mb-2" id="subscribeEmail" placeholder="Your Email">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="cta">
+                                            <span>Subscribe</span>
+                                            <svg viewBox="0 0 13 10" height="10px" width="15px">
+                                                <path d="M1,5 L11,5"></path>
+                                                <polyline points="8 1 12 5 8 9"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="mt-3">Menu</h5>
+                        <ul class="custom-list">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#client-reviews">Reviews</a></li>
+                            <li><a href="#about-us">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
-                        <h5>Newsletter</h5>
-                        <p>Subscribe to our newsletter for updates and promotions.</p>
-                        <form action="/submit-enquiry" method="post">
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Enter your email" name="email">
-                            </div>
-                            <button type="submit" class="btn btn-outline-light">Subscribe</button>
-                        </form>
-                    </div>
                 </div>
-                <!-- Enquiry form -->
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <h5>Enquiry Form</h5>
-                        <form action="/submit-enquiry" method="post">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="name">Your Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email">Your Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Your Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Your Message" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-outline-light">Submit Enquiry</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </footer>        
+            </footer>
+        </section>  
     </div>
 
     <!-- Bootstrap JavaScript dependencies (jQuery, Popper.js, Bootstrap JS) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    
     
     <!-- jQuery for handling scroll events -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -528,7 +792,7 @@
     <script>
         $(document).ready(function () {
             // Variables
-            var scrollThreshold = 150;
+            var scrollThreshold = 250;
             var navbar = $(".navbar");
             var navbarToggle = $(".navbar-toggler");
 
@@ -545,11 +809,16 @@
                     }
                 } else {
                     // For small screens
-                    if (navbarToggle.attr("aria-expanded") !== "true") {
-                        // Check if the toggle button is not expanded
+                    if (navbar.hasClass("show") || navbar.data("clicked")) {
+                        // Check if the navigation bar has the 'show' class or if it was clicked
                         navbar.addClass("navbar-scrolled");
                     } else {
-                        navbar.removeClass("navbar-scrolled");
+                        // Check the scroll position to determine if the 'navbar-scrolled' class should be removed
+                        if (scroll >= scrollThreshold) {
+                            navbar.addClass("navbar-scrolled");
+                        } else {
+                            navbar.removeClass("navbar-scrolled");
+                        }
                     }
                 }
             }
@@ -557,148 +826,153 @@
             // Event listeners
             $(window).scroll(updateNavbar);
             navbarToggle.on("click", function () {
+                // Set a data attribute to track if the toggle button was clicked
+                navbar.data("clicked", true);
                 updateNavbar();
             });
 
-            // Call the function on initial load
-            updateNavbar();
-        });
+            // Close the navigation bar on small screens when a link is clicked
+            $('.navbar-nav .nav-item .nav-link').on('click', function () {
+                if ($(window).width() < 992) {
+                    navbarToggle.click(); // Simulate a click on the toggle button to close the navigation
+                    navbar.data("clicked", false); // Reset the data attribute
+                }
+            });
 
-        // Function to handle fade in/out effect on scroll for sections
-        function fadeInOutOnScroll(sectionClass, offset) {
-            var section = $("." + sectionClass);
+            // Function to handle fade in/out effect on scroll for sections
+            function fadeInOutOnScroll(sectionClass, offset) {
+                var section = $("." + sectionClass);
 
-            try {
-                if (section.length) {
-                    // Check if the top of the section is in the viewport (with the specified offset)
-                    if (isTopOfElementInViewport(section[0], offset)) {
-                        section.addClass("fade-in").removeClass("fade-out");
+                try {
+                    if (section.length) {
+                        // Check if the top of the section is in the viewport (with the specified offset)
+                        if (isTopOfElementInViewport(section[0], offset)) {
+                            section.addClass("fade-in").removeClass("fade-out");
+                        } else {
+                            section.removeClass("fade-in").addClass("fade-out");
+                        }
                     } else {
-                        section.removeClass("fade-in").addClass("fade-out");
+                        throw new Error(sectionClass + " section not found.");
                     }
-                } else {
-                    throw new Error(sectionClass + " section not found.");
+                } catch (error) {
+                    console.error("Error in fade effect for " + sectionClass + " section:", error.message);
                 }
-            } catch (error) {
-                console.error("Error in fade effect for " + sectionClass + " section:", error.message);
             }
-        }
 
+            // Attach the scroll event listeners for different sections
+            $(window).on("scroll", function () {
+                fadeInOutOnScroll("client-reviews-section", 75);
+                fadeInOutOnScroll("about-us-section", 75);
+                fadeInOutOnScroll("footer-section", 75);
+                fadeInOutOnScroll("services-section", 75);
+                fadeInOutOnScroll("portfolio-section", 75);
+                fadeInOutOnScroll("contact-section", 75);
+            });
 
-
-        // Attach the scroll event listeners for different sections
-        $(window).on("scroll", function () {
-            fadeInOutOnScroll("client-reviews-section", 75);
-            fadeInOutOnScroll("about-us-section", 75);
-            fadeInOutOnScroll("footer-section", 75);
-            fadeInOutOnScroll("services-section", 75);
-            fadeInOutOnScroll("portfolio-section", 75);
-        });
-
-
-        // Function to check if the top of an element is in the viewport with an offset
-        function isTopOfElementInViewport(el, offset) {
-            var rect = el.getBoundingClientRect();
-            return rect.top <= window.innerHeight - offset;
-        }
-
-        // Smooth scrolling for anchor links
-        $(document).on('click', 'a[href^="#"]', function (event) {
-            event.preventDefault();
-
-            var target = $(this.getAttribute('href'));
-            if (target.length) {
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 157 // Adjusted offset to account for the fixed navbar
-                }, 800);
+            // Function to check if the top of an element is in the viewport with an offset
+            function isTopOfElementInViewport(el, offset) {
+                var rect = el.getBoundingClientRect();
+                return rect.top <= window.innerHeight - offset;
             }
-        });
 
-        // Initialize Slick slider
-        $(document).ready(function () {
-        var slickOptions = {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            focusOnSelect: true,
-            variableWidth: true,
-            prevArrow: '<button type="button" class="slick-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>',
-            nextArrow: '<button type="button" class="slick-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: true,
-                        centerMode: false,
-                        variableWidth: false
+            // Smooth scrolling for anchor links
+            $(document).on('click', 'a[href^="#"]', function (event) {
+                event.preventDefault();
+
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 157 // Adjusted offset to account for the fixed navbar
+                    }, 800);
+                }
+            });
+
+            // Initialize Slick slider
+            $(document).ready(function () {
+                var slickOptions = {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    centerMode: true,
+                    focusOnSelect: true,
+                    variableWidth: true,
+                    prevArrow: '<button type="button" class="slick-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>',
+                    nextArrow: '<button type="button" class="slick-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>',
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                arrows: true,
+                                centerMode: false,
+                                variableWidth: false
+                            }
+                        }
+                    ]
+                };
+
+                var slickSlider = $('#portfolio-slider').slick(slickOptions);
+
+                // Automatically slide to the next image every 3 seconds
+                var intervalId = setInterval(function () {
+                    slickSlider.slick('slickNext');
+                }, 4000);
+
+                // Click event for manual navigation to the previous image
+                $('.slick-prev').on('click', function () {
+                    clearInterval(intervalId); // Stop the automatic sliding
+                    slickSlider.slick('slickPrev'); // Move to the previous image
+                });
+
+                // Click event for manual navigation to the next image
+                $('.slick-next').on('click', function () {
+                    clearInterval(intervalId); // Stop the automatic sliding
+                    slickSlider.slick('slickNext'); // Move to the next image
+                });
+            });
+
+            // Function to update the active state of the navigation links based on scroll position
+            function updateActiveNav() {
+                var navbarHeight = $('.navbar').outerHeight();
+                var scrollPosition = $(window).scrollTop() + navbarHeight;
+
+                // Loop through each section and check if it is in view
+                $('section').each(function () {
+                    var target = $(this);
+                    var targetId = target.attr('id');
+
+                    if (target.position().top <= scrollPosition && (target.position().top + target.outerHeight()) > scrollPosition) {
+                        // Remove the active class from all navigation links
+                        $('.navbar-nav .nav-item').removeClass('active');
+
+                        // Add the active class to the corresponding navigation link
+                        $('.navbar-nav .nav-item a[href="#' + targetId + '"]').parent().addClass('active');
                     }
-                }
-            ]
-        };
+                });
+            }
 
-            var slickSlider = $('#portfolio-slider').slick(slickOptions);
-
-            // Automatically slide to the next image every 3 seconds
-            var intervalId = setInterval(function () {
-                slickSlider.slick('slickNext');
-            }, 4000);
-
-            // Click event for manual navigation to the previous image
-            $('.slick-prev').on('click', function () {
-                clearInterval(intervalId); // Stop the automatic sliding
-                slickSlider.slick('slickPrev'); // Move to the previous image
+            // Attach the scroll event listener
+            $(window).scroll(function () {
+                updateActiveNav();
             });
 
-            // Click event for manual navigation to the next image
-            $('.slick-next').on('click', function () {
-                clearInterval(intervalId); // Stop the automatic sliding
-                slickSlider.slick('slickNext'); // Move to the next image
-            });
-        });
+            // Attach click event listener for smooth scrolling
+            $('a[href^="#"]').on('click', function (event) {
+                event.preventDefault();
 
-        // Function to update the active state of the navigation links based on scroll position
-        function updateActiveNav() {
-            var navbarHeight = $('.navbar').outerHeight();
-            var scrollPosition = $(window).scrollTop() + navbarHeight;
+                var target = $($(this).attr('href'));
 
-            // Loop through each section and check if it is in view
-            $('section').each(function () {
-                var target = $(this);
-                var targetId = target.attr('id');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - $('.navbar').outerHeight()
+                    }, 800);
 
-                if (target.position().top <= scrollPosition && (target.position().top + target.outerHeight()) > scrollPosition) {
-                    // Remove the active class from all navigation links
-                    $('.navbar-nav .nav-item').removeClass('active');
-
-                    // Add the active class to the corresponding navigation link
-                    $('.navbar-nav .nav-item a[href="#' + targetId + '"]').parent().addClass('active');
+                    // Update the active state after scrolling
+                    updateActiveNav();
                 }
             });
-        }
 
-        // Attach the scroll event listener
-        $(window).scroll(function () {
+            // Call the function on initial load
             updateActiveNav();
         });
-
-        // Attach click event listener for smooth scrolling
-        $('a[href^="#"]').on('click', function (event) {
-            event.preventDefault();
-
-            var target = $($(this).attr('href'));
-
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top - $('.navbar').outerHeight()
-                }, 800);
-
-                // Update the active state after scrolling
-                updateActiveNav();
-            }
-        });
-
-        // Call the function on initial load
-        updateActiveNav();
     </script>
 </body>
 </html>
