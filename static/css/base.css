@@ -95,7 +95,7 @@ body::-webkit-scrollbar-thumb {
     left: 0;
     width: 100%;
     height: 80%; /* Adjust this value to control the height of the background section */
-    background-image: url('static/images/wavesBackground.jpg');
+    background-image: url('../images/wavesBackground.jpg');
     background-size: cover;
     background-position: center;
     z-index: -1;
